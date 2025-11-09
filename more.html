@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>江西粤东气象社区交流安全中心 - 更多</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1e40af',
+            secondary: '#3b82f6',
+            accent: '#60a5fa',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen pb-20">
+  <!-- 顶部标题区域 -->
+  <header class="bg-gradient-blue text-white py-4 px-4">
+    <div class="container mx-auto">
+      <div class="flex items-center">
+        <h1 class="text-lg font-bold">更多</h1>
+      </div>
+    </div>
+  </header>
+
+  <!-- 内容区域 -->
+  <main class="container mx-auto px-4 py-6">
+    <!-- 功能列表 -->
+    <div class="bg-white rounded-lg shadow-md mb-6">
+      <div class="divide-y divide-gray-200">
+        <div class="p-4">
+          <button id="showRulesBtn" class="flex items-center justify-between w-full text-left">
+            <div class="flex items-center">
+              <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 mr-3">
+                <i class="fa fa-book"></i>
+              </div>
+              <span class="text-gray-800 font-medium">社区规则</span>
+            </div>
+            <i class="fa fa-chevron-right text-gray-400"></i>
+          </button>
+        </div>
+        <div class="p-4">
+          <button id="showAnnouncementsBtn" class="flex items-center justify-between w-full text-left">
+            <div class="flex items-center">
+              <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-500 mr-3">
+                <i class="fa fa-bullhorn"></i>
+              </div>
+              <span class="text-gray-800 font-medium">公告中心</span>
+            </div>
+            <i class="fa fa-chevron-right text-gray-400"></i>
+          </button>
+        </div>
+        <div class="p-4">
+          <button id="showContactBtn" class="flex items-center justify-between w-full text-left">
+            <div class="flex items-center">
+              <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-500 mr-3">
+                <i class="fa fa-phone"></i>
+              </div>
+              <span class="text-gray-800 font-medium">联系我们</span>
+            </div>
+            <i class="fa fa-chevron-right text-gray-400"></i>
+          </button>
+        </div>
+        <div class="p-4">
+          <button id="showAboutBtn" class="flex items-center justify-between w-full text-left">
+            <div class="flex items-center">
+              <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-500 mr-3">
+                <i class="fa fa-info-circle"></i>
+              </div>
+              <span class="text-gray-800 font-medium">关于我们</span>
+            </div>
+            <i class="fa fa-chevron-right text-gray-400"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 内容展示区域 -->
+    <div id="contentArea" class="bg-white rounded-lg shadow-md p-6">
+      <!-- 默认显示社区规则 -->
+      <div id="rulesContent">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">社区规则</h2>
+        <div id="rulesList" class="space-y-6">
+          <!-- 规则内容将通过JavaScript动态生成 -->
+        </div>
+      </div>
+
+      <!-- 公告中心内容 -->
+      <div id="announcementsContent" class="hidden">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">公告中心</h2>
+        <div class="space-y-4">
+          <div class="border-l-4 border-primary pl-3 py-1">
+            <h4 class="font-medium text-gray-800">关于加强气象社区交流规范的通知</h4>
+            <p class="text-sm text-gray-600 mt-1">为了维护良好的交流环境，我们更新了社区规范，请所有用户遵守。</p>
+            <p class="text-xs text-gray-500 mt-1">2023-07-10</p>
+          </div>
+          <div class="border-l-4 border-gray-300 pl-3 py-1">
+            <h4 class="font-medium text-gray-800">系统功能更新公告</h4>
+            <p class="text-sm text-gray-600 mt-1">我们优化了举报处理流程，提高了处理效率，感谢您的支持。</p>
+            <p class="text-xs text-gray-500 mt-1">2023-07-01</p>
+          </div>
+          <div class="border-l-4 border-gray-300 pl-3 py-1">
+            <h4 class="font-medium text-gray-800">社区安全提示</h4>
+            <p class="text-sm text-gray-600 mt-1">近期发现有不法分子冒充管理员进行诈骗，请大家提高警惕，不要轻易相信他人。</p>
+            <p class="text-xs text-gray-500 mt-1">2023-06-15</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 联系我们内容 -->
+      <div id="contactContent" class="hidden">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">联系我们</h2>
+        <div class="space-y-4">
+          <div class="flex items-start">
+            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 mr-3 flex-shrink-0">
+              <i class="fa fa-envelope"></i>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-800">邮箱</h4>
+              <p class="text-sm text-gray-600 mt-1">support@weathercommunity.com</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-500 mr-3 flex-shrink-0">
+              <i class="fa fa-qq"></i>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-800">QQ群</h4>
+              <p class="text-sm text-gray-600 mt-1">江西气象爱好者: 123456789</p>
+              <p class="text-sm text-gray-600 mt-1">粤东气象爱好者: 987654321</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-500 mr-3 flex-shrink-0">
+              <i class="fa fa-comment"></i>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-800">在线客服</h4>
+              <p class="text-sm text-gray-600 mt-1">工作时间: 周一至周五 9:00-18:00</p>
+              <button class="mt-2 px-4 py-2 bg-primary text-white rounded-md hover:bg-secondary transition-colors duration-200 text-sm">
+                联系客服
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 关于我们内容 -->
+      <div id="aboutContent" class="hidden">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">关于我们</h2>
+        <div class="space-y-4">
+          <p class="text-gray-700">江西粤东气象社区交流安全中心是为了维护气象爱好者社区的良好交流环境而设立的管理机构。</p>
+          <p class="text-gray-700">我们致力于为气象爱好者提供一个安全、健康、积极向上的交流平台，促进气象知识的传播和交流。</p>
+          <p class="text-gray-700">我们的职责包括：</p>
+          <ul class="list-disc pl-5 text-gray-700 space-y-1">
+            <li>制定和执行社区规范</li>
+            <li>处理用户举报和申诉</li>
+            <li>维护社区秩序和安全</li>
+            <li>解答用户疑问和提供帮助</li>
+            <li>收集用户反馈和建议</li>
+          </ul>
+          <p class="text-gray-700 mt-4">我们将不断完善社区管理机制，为大家创造更好的交流环境。</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 底部导航栏 -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg">
+    <div class="flex justify-around">
+      <a href="index.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-home text-xl"></i>
+        <span class="text-xs mt-1">首页</span>
+      </a>
+      <a href="report.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-flag text-xl"></i>
+        <span class="text-xs mt-1">我要举报</span>
+      </a>
+      <a href="progress.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-tasks text-xl"></i>
+        <span class="text-xs mt-1">处理进度</span>
+      </a>
+      <a href="more.html" class="nav-link flex flex-col items-center py-2 px-4 text-primary">
+        <i class="fa fa-ellipsis-h text-xl"></i>
+        <span class="text-xs mt-1">更多</span>
+      </a>
+      <a href="profile.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-user text-xl"></i>
+        <span class="text-xs mt-1">我的</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- 引入通用脚本 -->
+  <script src="script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 获取规则数据
+      const rules = DataManager.getRules();
+      const rulesList = document.getElementById('rulesList');
+
+      // 渲染规则列表
+      rules.forEach(rule => {
+        const ruleItem = document.createElement('div');
+        ruleItem.className = 'mb-6';
+        ruleItem.innerHTML = `
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">${rule.title}</h3>
+          <div class="bg-gray-50 p-4 rounded-md">
+            <pre class="text-sm text-gray-700 whitespace-pre-line">${rule.content}</pre>
+          </div>
+        `;
+        rulesList.appendChild(ruleItem);
+      });
+
+      // 切换内容显示
+      const contents = {
+        'rulesContent': document.getElementById('rulesContent'),
+        'announcementsContent': document.getElementById('announcementsContent'),
+        'contactContent': document.getElementById('contactContent'),
+        'aboutContent': document.getElementById('aboutContent')
+      };
+
+      function showContent(contentId) {
+        // 隐藏所有内容
+        Object.values(contents).forEach(content => {
+          content.classList.add('hidden');
+        });
+        
+        // 显示选中的内容
+        contents[contentId].classList.remove('hidden');
+      }
+
+      // 绑定按钮点击事件
+      document.getElementById('showRulesBtn').addEventListener('click', () => {
+        showContent('rulesContent');
+      });
+
+      document.getElementById('showAnnouncementsBtn').addEventListener('click', () => {
+        showContent('announcementsContent');
+      });
+
+      document.getElementById('showContactBtn').addEventListener('click', () => {
+        showContent('contactContent');
+      });
+
+      document.getElementById('showAboutBtn').addEventListener('click', () => {
+        showContent('aboutContent');
+      });
+    });
+  </script>
+</body>
+</html>

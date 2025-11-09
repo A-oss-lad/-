@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>江西粤东气象社区交流安全中心 - 登录</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1e40af',
+            secondary: '#3b82f6',
+            accent: '#60a5fa',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="container mx-auto px-4 py-8 max-w-md">
+    <!-- Logo和标题 -->
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-blue text-white text-2xl mb-4">
+        <i class="fa fa-shield"></i>
+      </div>
+      <h1 class="text-2xl font-bold text-gray-800">江西粤东气象社区交流安全中心</h1>
+      <p class="text-gray-600 mt-2">登录您的账号</p>
+    </div>
+
+    <!-- 登录表单 -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+      <div class="mb-6">
+        <div class="flex border-b border-gray-200">
+          <button id="userLoginTab" class="py-2 px-4 border-b-2 border-primary text-primary font-medium">普通用户登录</button>
+          <button id="adminLoginTab" class="py-2 px-4 border-b-2 border-transparent text-gray-500 hover:text-gray-700">管理员登录</button>
+        </div>
+      </div>
+
+      <!-- 普通用户登录表单 -->
+      <form id="userLoginForm" class="space-y-4">
+        <div>
+          <label for="qqNumber" class="block text-sm font-medium text-gray-700 mb-1">QQ号码</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+              <i class="fa fa-qq"></i>
+            </span>
+            <input type="text" id="qqNumber" name="qqNumber" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入QQ号码" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+              <i class="fa fa-lock"></i>
+            </span>
+            <input type="password" id="password" name="password" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入密码" required>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input type="checkbox" id="remember" name="remember" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+            <label for="remember" class="ml-2 block text-sm text-gray-700">记住我</label>
+          </div>
+          <a href="#" class="text-sm text-primary hover:text-secondary">忘记密码？</a>
+        </div>
+
+        <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+          登录
+        </button>
+
+        <div class="text-center mt-4">
+          <span class="text-gray-600">还没有账号？</span>
+          <button type="button" id="showRegisterForm" class="text-primary hover:text-secondary ml-1">立即注册</button>
+        </div>
+      </form>
+
+      <!-- 管理员登录表单 -->
+      <form id="adminLoginForm" class="space-y-4 hidden">
+        <div>
+          <label for="adminUsername" class="block text-sm font-medium text-gray-700 mb-1">管理员账号</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+              <i class="fa fa-user-circle"></i>
+            </span>
+            <input type="text" id="adminUsername" name="adminUsername" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入管理员账号" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="adminPassword" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+              <i class="fa fa-lock"></i>
+            </span>
+            <input type="password" id="adminPassword" name="adminPassword" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入密码" required>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+          管理员登录
+        </button>
+      </form>
+    </div>
+
+    <!-- 注册表单 -->
+    <div id="registerForm" class="bg-white rounded-lg shadow-md p-6 hidden">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-lg font-semibold text-gray-800">用户注册</h2>
+        <button type="button" id="backToLogin" class="text-gray-500 hover:text-gray-700">
+          <i class="fa fa-arrow-left"></i> 返回登录
+        </button>
+      </div>
+
+      <form id="registerUserForm" class="space-y-4">
+        <div>
+          <label for="registerUsername" class="block text-sm font-medium text-gray-700 mb-1">用户名</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+              <i class="fa fa-user"></i>
+            </span>
+            <input type="text" id="registerUsername" name="registerUsername" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入用户名" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="registerQqNumber" class="block text-sm font-medium text-gray-700 mb-1">QQ号码</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+              <i class="fa fa-qq"></i>
+            </span>
+            <input type="text" id="registerQqNumber" name="registerQqNumber" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入QQ号码" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="registerPassword" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+              <i class="fa fa-lock"></i>
+            </span>
+            <input type="password" id="registerPassword" name="registerPassword" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入密码" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">确认密码</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+              <i class="fa fa-lock"></i>
+            </span>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请再次输入密码" required>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+          注册
+        </button>
+      </form>
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="text-center text-gray-500 text-sm mt-8">
+      <p>© 2023 江西粤东气象社区交流安全中心</p>
+      <p class="mt-1">本系统仅用于社区安全管理，保护用户交流环境</p>
+    </div>
+  </div>
+
+  <!-- 引入通用脚本 -->
+  <script src="script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 切换登录标签
+      const userLoginTab = document.getElementById('userLoginTab');
+      const adminLoginTab = document.getElementById('adminLoginTab');
+      const userLoginForm = document.getElementById('userLoginForm');
+      const adminLoginForm = document.getElementById('adminLoginForm');
+
+      userLoginTab.addEventListener('click', () => {
+        userLoginTab.classList.add('border-primary', 'text-primary');
+        userLoginTab.classList.remove('border-transparent', 'text-gray-500');
+        adminLoginTab.classList.add('border-transparent', 'text-gray-500');
+        adminLoginTab.classList.remove('border-primary', 'text-primary');
+        userLoginForm.classList.remove('hidden');
+        adminLoginForm.classList.add('hidden');
+      });
+
+      adminLoginTab.addEventListener('click', () => {
+        adminLoginTab.classList.add('border-primary', 'text-primary');
+        adminLoginTab.classList.remove('border-transparent', 'text-gray-500');
+        userLoginTab.classList.add('border-transparent', 'text-gray-500');
+        userLoginTab.classList.remove('border-primary', 'text-primary');
+        adminLoginForm.classList.remove('hidden');
+        userLoginForm.classList.add('hidden');
+      });
+
+      // 显示注册表单
+      const showRegisterFormBtn = document.getElementById('showRegisterForm');
+      const registerForm = document.getElementById('registerForm');
+      const backToLoginBtn = document.getElementById('backToLogin');
+
+      showRegisterFormBtn.addEventListener('click', () => {
+        document.querySelector('.bg-white.rounded-lg.shadow-md.p-6.mb-6').classList.add('hidden');
+        registerForm.classList.remove('hidden');
+      });
+
+      backToLoginBtn.addEventListener('click', () => {
+        registerForm.classList.add('hidden');
+        document.querySelector('.bg-white.rounded-lg.shadow-md.p-6.mb-6').classList.remove('hidden');
+      });
+
+      // 用户登录表单提交
+      userLoginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const qqNumber = document.getElementById('qqNumber').value;
+        const password = document.getElementById('password').value;
+
+        const result = AuthManager.login(qqNumber, password);
+        if (result.success) {
+          Utils.showMessage('登录成功', 'success');
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1500);
+        } else {
+          Utils.showMessage(result.message, 'error');
+        }
+      });
+
+      // 管理员登录表单提交
+      adminLoginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('adminUsername').value;
+        const password = document.getElementById('adminPassword').value;
+
+        // 检查是否为超级管理员账号
+        if (username === '我就是天才' && password === '189203615aazz') {
+          const result = AuthManager.login('189203615', '189203615aazz');
+          if (result.success) {
+            Utils.showMessage('管理员登录成功', 'success');
+            setTimeout(() => {
+              window.location.href = 'admin.html';
+            }, 1500);
+          } else {
+            Utils.showMessage(result.message, 'error');
+          }
+        } else {
+          Utils.showMessage('管理员账号或密码错误', 'error');
+        }
+      });
+
+      // 用户注册表单提交
+      document.getElementById('registerUserForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('registerUsername').value;
+        const qqNumber = document.getElementById('registerQqNumber').value;
+        const password = document.getElementById('registerPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // 验证密码
+        if (password !== confirmPassword) {
+          Utils.showMessage('两次输入的密码不一致', 'error');
+          return;
+        }
+
+        const result = AuthManager.register(username, qqNumber, password);
+        if (result.success) {
+          Utils.showMessage('注册成功', 'success');
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1500);
+        } else {
+          Utils.showMessage(result.message, 'error');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

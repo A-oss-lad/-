@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>江西粤东气象社区交流安全中心 - 申诉中心</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1e40af',
+            secondary: '#3b82f6',
+            accent: '#60a5fa',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen pb-20">
+  <!-- 顶部标题区域 -->
+  <header class="bg-gradient-blue text-white py-4 px-4">
+    <div class="container mx-auto">
+      <div class="flex items-center">
+        <h1 class="text-lg font-bold">申诉中心</h1>
+      </div>
+    </div>
+  </header>
+
+  <!-- 内容区域 -->
+  <main class="container mx-auto px-4 py-6">
+    <!-- 申诉说明 -->
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <i class="fa fa-info-circle text-blue-500"></i>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm text-blue-700">
+            如对处罚有异议，请填写以下申诉表单。我们将在3个工作日内处理您的申诉，并给出处理结果。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 申诉表单 -->
+    <form id="appealForm" class="bg-white rounded-lg shadow-md p-6">
+      <div class="space-y-6">
+        <!-- 处罚信息 -->
+        <div>
+          <h3 class="text-md font-semibold text-gray-800 mb-3">处罚信息</h3>
+          <div class="bg-gray-50 p-4 rounded-md space-y-3">
+            <div>
+              <label class="block text-sm font-medium text-gray-500">用户名（QQ号码）</label>
+              <p id="punishmentUsername" class="text-gray-800">用户名 (QQ: 123456789)</p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-500">违规原因</label>
+              <p id="punishmentReason" class="text-gray-800">违规原因描述</p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-500">处罚结果</label>
+              <p id="punishmentResult" class="text-gray-800">封禁30天</p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-500">生效时间</label>
+              <p id="punishmentStartTime" class="text-gray-800">2023-07-15 10:30:00</p>
+            </div>
+            <div id="endTimeContainer">
+              <label class="block text-sm font-medium text-gray-500">解封时间</label>
+              <p id="punishmentEndTime" class="text-gray-800">2023-08-15 10:30:00</p>
+            </div>
+          </div>
+          <input type="hidden" id="punishmentId" value="">
+        </div>
+
+        <!-- 申诉理由 -->
+        <div>
+          <label for="appealDescription" class="block text-sm font-medium text-gray-700 mb-1">描述经历</label>
+          <textarea id="appealDescription" name="appealDescription" rows="5" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请详细描述您的情况，说明处罚不合理的原因" required></textarea>
+          <p class="mt-1 text-xs text-gray-500">请提供充分的理由和证据，以便我们更好地处理您的申诉</p>
+        </div>
+
+        <!-- 证据上传 -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">附件证据</label>
+          <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+            <div class="space-y-1 text-center">
+              <i class="fa fa-cloud-upload text-gray-400 text-3xl"></i>
+              <div class="flex text-sm text-gray-600">
+                <label for="appealEvidence" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-secondary focus-within:outline-none">
+                  <span>上传图片</span>
+                  <input id="appealEvidence" name="appealEvidence" type="file" class="sr-only" accept="image/*" multiple>
+                </label>
+                <p class="pl-1">或拖拽文件到此处</p>
+              </div>
+              <p class="text-xs text-gray-500">
+                支持PNG、JPG、JPEG格式，单个文件不超过5MB
+              </p>
+            </div>
+          </div>
+          <div id="evidencePreview" class="mt-3 grid grid-cols-3 gap-2 hidden">
+            <!-- 证据预览将在这里显示 -->
+          </div>
+        </div>
+
+        <!-- 联系方式 -->
+        <div>
+          <label for="appealContactInfo" class="block text-sm font-medium text-gray-700 mb-1">联系方式（选填）</label>
+          <input type="text" id="appealContactInfo" name="appealContactInfo" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请留下您的联系方式，以便我们进一步了解情况">
+        </div>
+
+        <!-- 提交按钮 -->
+        <div class="pt-4">
+          <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+            提交申诉
+          </button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <!-- 底部导航栏 -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg">
+    <div class="flex justify-around">
+      <a href="index.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-home text-xl"></i>
+        <span class="text-xs mt-1">首页</span>
+      </a>
+      <a href="report.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-flag text-xl"></i>
+        <span class="text-xs mt-1">我要举报</span>
+      </a>
+      <a href="progress.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-tasks text-xl"></i>
+        <span class="text-xs mt-1">处理进度</span>
+      </a>
+      <a href="more.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-ellipsis-h text-xl"></i>
+        <span class="text-xs mt-1">更多</span>
+      </a>
+      <a href="profile.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-user text-xl"></i>
+        <span class="text-xs mt-1">我的</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- 引入通用脚本 -->
+  <script src="script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentUser = AuthManager.getCurrentUser();
+      if (!currentUser) {
+        Utils.showMessage('请先登录', 'error');
+        return;
+      }
+
+      // 从URL获取处罚ID
+      const urlParams = new URLSearchParams(window.location.search);
+      const punishmentId = urlParams.get('punishmentId');
+      
+      // 如果有处罚ID，加载处罚信息
+      if (punishmentId) {
+        const punishment = DataManager.getPunishmentById(punishmentId);
+        if (punishment) {
+          document.getElementById('punishmentId').value = punishment.id;
+          document.getElementById('punishmentUsername').textContent = `${currentUser.username} (QQ: ${currentUser.qqNumber})`;
+          document.getElementById('punishmentReason').textContent = punishment.reason;
+          
+          const typeText = punishment.type === 'ban' ? '封禁' : 
+                          punishment.type === 'mute' ? '禁言' : '警告';
+          document.getElementById('punishmentResult').textContent = `${typeText}${punishment.duration}`;
+          
+          document.getElementById('punishmentStartTime').textContent = Utils.formatDate(punishment.startTime);
+          
+          if (punishment.endTime) {
+            document.getElementById('punishmentEndTime').textContent = Utils.formatDate(punishment.endTime);
+            document.getElementById('endTimeContainer').classList.remove('hidden');
+          } else {
+            document.getElementById('endTimeContainer').classList.add('hidden');
+          }
+        }
+      } else {
+        // 如果没有处罚ID，显示用户的所有处罚
+        const punishments = DataManager.getPunishmentsByUserId(currentUser.id);
+        if (punishments.length > 0) {
+          const activePunishment = punishments.find(p => p.status === 'active');
+          if (activePunishment) {
+            document.getElementById('punishmentId').value = activePunishment.id;
+            document.getElementById('punishmentUsername').textContent = `${currentUser.username} (QQ: ${currentUser.qqNumber})`;
+            document.getElementById('punishmentReason').textContent = activePunishment.reason;
+            
+            const typeText = activePunishment.type === 'ban' ? '封禁' : 
+                            activePunishment.type === 'mute' ? '禁言' : '警告';
+            document.getElementById('punishmentResult').textContent = `${typeText}${activePunishment.duration}`;
+            
+            document.getElementById('punishmentStartTime').textContent = Utils.formatDate(activePunishment.startTime);
+            
+            if (activePunishment.endTime) {
+              document.getElementById('punishmentEndTime').textContent = Utils.formatDate(activePunishment.endTime);
+              document.getElementById('endTimeContainer').classList.remove('hidden');
+            } else {
+              document.getElementById('endTimeContainer').classList.add('hidden');
+            }
+          }
+        }
+      }
+
+      // 证据上传预览
+      const evidenceInput = document.getElementById('appealEvidence');
+      const evidencePreview = document.getElementById('evidencePreview');
+
+      evidenceInput.addEventListener('change', () => {
+        if (evidenceInput.files.length > 0) {
+          evidencePreview.innerHTML = '';
+          evidencePreview.classList.remove('hidden');
+
+          for (let i = 0; i < Math.min(evidenceInput.files.length, 6); i++) {
+            const file = evidenceInput.files[i];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+              const previewItem = document.createElement('div');
+              previewItem.className = 'relative';
+              previewItem.innerHTML = `
+                <img src="${e.target.result}" class="w-full h-24 object-cover rounded-md">
+                <button type="button" class="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center delete-preview">
+                  <i class="fa fa-times"></i>
+                </button>
+              `;
+              evidencePreview.appendChild(previewItem);
+
+              // 删除预览
+              previewItem.querySelector('.delete-preview').addEventListener('click', () => {
+                previewItem.remove();
+                if (evidencePreview.children.length === 0) {
+                  evidencePreview.classList.add('hidden');
+                }
+              });
+            };
+
+            reader.readAsDataURL(file);
+          }
+        }
+      });
+
+      // 申诉表单提交
+      document.getElementById('appealForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const punishmentId = document.getElementById('punishmentId').value;
+        if (!punishmentId) {
+          Utils.showMessage('未找到处罚信息', 'error');
+          return;
+        }
+
+        const description = document.getElementById('appealDescription').value;
+        const contactInfo = document.getElementById('appealContactInfo').value;
+
+        // 模拟证据文件路径
+        const evidence = ['https://via.placeholder.com/300x200']; // 实际应用中应上传文件并获取URL
+
+        // 创建申诉数据
+        const appealData = {
+          userId: currentUser.id,
+          punishmentId,
+          description,
+          evidence,
+          contactInfo
+        };
+
+        // 提交申诉
+        const appeal = DataManager.addAppeal(appealData);
+        
+        if (appeal) {
+          Utils.showMessage('申诉提交成功', 'success');
+          setTimeout(() => {
+            window.location.href = 'punishment.html';
+          }, 1500);
+        } else {
+          Utils.showMessage('申诉提交失败，请稍后重试', 'error');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>江西粤东气象社区交流安全中心 - 我要举报</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1e40af',
+            secondary: '#3b82f6',
+            accent: '#60a5fa',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen pb-20">
+  <!-- 顶部标题区域 -->
+  <header class="bg-gradient-blue text-white py-4 px-4">
+    <div class="container mx-auto">
+      <div class="flex items-center">
+        <h1 class="text-lg font-bold">我要举报</h1>
+      </div>
+    </div>
+  </header>
+
+  <!-- 内容区域 -->
+  <main class="container mx-auto px-4 py-6">
+    <!-- 举报说明 -->
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <i class="fa fa-info-circle text-blue-500"></i>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm text-blue-700">
+            请如实填写举报信息，我们将认真处理每一条举报，并保护举报人的隐私。恶意举报将承担相应责任。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 举报表单 -->
+    <form id="reportForm" class="bg-white rounded-lg shadow-md p-6">
+      <div class="space-y-4">
+        <!-- 被举报人信息 -->
+        <div>
+          <h3 class="text-md font-semibold text-gray-800 mb-3">被举报人信息</h3>
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label for="reportedUsername" class="block text-sm font-medium text-gray-700 mb-1">被举报人用户名</label>
+              <input type="text" id="reportedUsername" name="reportedUsername" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入被举报人用户名" required>
+            </div>
+            <div>
+              <label for="reportedQqNumber" class="block text-sm font-medium text-gray-700 mb-1">被举报人QQ号码</label>
+              <input type="text" id="reportedQqNumber" name="reportedQqNumber" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入被举报人QQ号码" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- 违规信息 -->
+        <div>
+          <h3 class="text-md font-semibold text-gray-800 mb-3">违规信息</h3>
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label for="group" class="block text-sm font-medium text-gray-700 mb-1">涉及群聊</label>
+              <select id="group" name="group" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                <option value="">请选择涉及的群聊</option>
+                <option value="江西气象爱好者">江西气象爱好者</option>
+                <option value="粤东气象爱好者">粤东气象爱好者</option>
+              </select>
+            </div>
+            <div>
+              <label for="violationType" class="block text-sm font-medium text-gray-700 mb-1">违规类型</label>
+              <select id="violationType" name="violationType" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                <option value="">请选择违规类型</option>
+                <option value="色情低容/资源">色情低容/资源</option>
+                <option value="政治敏感">政治敏感</option>
+                <option value="辱骂/侮辱他人">辱骂/侮辱他人</option>
+                <option value="虚假/谣言信息">虚假/谣言信息</option>
+                <option value="无关的广告信息">无关的广告信息</option>
+                <option value="私信骚扰">私信骚扰</option>
+                <option value="其他">其他（需填写理由）</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 违规描述 -->
+        <div>
+          <label for="description" class="block text-sm font-medium text-gray-700 mb-1">描述经历</label>
+          <textarea id="description" name="description" rows="5" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请详细描述违规行为，包括时间、地点、具体内容等信息" required></textarea>
+        </div>
+
+        <!-- 证据上传 -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">附件证据</label>
+          <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+            <div class="space-y-1 text-center">
+              <i class="fa fa-cloud-upload text-gray-400 text-3xl"></i>
+              <div class="flex text-sm text-gray-600">
+                <label for="evidence" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-secondary focus-within:outline-none">
+                  <span>上传图片</span>
+                  <input id="evidence" name="evidence" type="file" class="sr-only" accept="image/*" multiple>
+                </label>
+                <p class="pl-1">或拖拽文件到此处</p>
+              </div>
+              <p class="text-xs text-gray-500">
+                支持PNG、JPG、JPEG格式，单个文件不超过5MB
+              </p>
+            </div>
+          </div>
+          <div id="evidencePreview" class="mt-3 grid grid-cols-3 gap-2 hidden">
+            <!-- 证据预览将在这里显示 -->
+          </div>
+        </div>
+
+        <!-- 联系方式 -->
+        <div>
+          <label for="contactInfo" class="block text-sm font-medium text-gray-700 mb-1">联系方式（选填）</label>
+          <input type="text" id="contactInfo" name="contactInfo" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请留下您的联系方式，以便我们进一步了解情况">
+        </div>
+
+        <!-- 提交按钮 -->
+        <div class="pt-4">
+          <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+            提交举报
+          </button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <!-- 底部导航栏 -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg">
+    <div class="flex justify-around">
+      <a href="index.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-home text-xl"></i>
+        <span class="text-xs mt-1">首页</span>
+      </a>
+      <a href="report.html" class="nav-link flex flex-col items-center py-2 px-4 text-primary">
+        <i class="fa fa-flag text-xl"></i>
+        <span class="text-xs mt-1">我要举报</span>
+      </a>
+      <a href="progress.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-tasks text-xl"></i>
+        <span class="text-xs mt-1">处理进度</span>
+      </a>
+      <a href="more.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-ellipsis-h text-xl"></i>
+        <span class="text-xs mt-1">更多</span>
+      </a>
+      <a href="profile.html" class="nav-link flex flex-col items-center py-2 px-4 text-gray-600">
+        <i class="fa fa-user text-xl"></i>
+        <span class="text-xs mt-1">我的</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- 引入通用脚本 -->
+  <script src="script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 证据上传预览
+      const evidenceInput = document.getElementById('evidence');
+      const evidencePreview = document.getElementById('evidencePreview');
+
+      evidenceInput.addEventListener('change', () => {
+        if (evidenceInput.files.length > 0) {
+          evidencePreview.innerHTML = '';
+          evidencePreview.classList.remove('hidden');
+
+          for (let i = 0; i < Math.min(evidenceInput.files.length, 6); i++) {
+            const file = evidenceInput.files[i];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+              const previewItem = document.createElement('div');
+              previewItem.className = 'relative';
+              previewItem.innerHTML = `
+                <img src="${e.target.result}" class="w-full h-24 object-cover rounded-md">
+                <button type="button" class="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center delete-preview">
+                  <i class="fa fa-times"></i>
+                </button>
+              `;
+              evidencePreview.appendChild(previewItem);
+
+              // 删除预览
+              previewItem.querySelector('.delete-preview').addEventListener('click', () => {
+                previewItem.remove();
+                if (evidencePreview.children.length === 0) {
+                  evidencePreview.classList.add('hidden');
+                }
+              });
+            };
+
+            reader.readAsDataURL(file);
+          }
+        }
+      });
+
+      // 举报表单提交
+      document.getElementById('reportForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const currentUser = AuthManager.getCurrentUser();
+        if (!currentUser) {
+          Utils.showMessage('请先登录', 'error');
+          return;
+        }
+
+        // 获取表单数据
+        const reportedUsername = document.getElementById('reportedUsername').value;
+        const reportedQqNumber = document.getElementById('reportedQqNumber').value;
+        const group = document.getElementById('group').value;
+        const violationType = document.getElementById('violationType').value;
+        const description = document.getElementById('description').value;
+        const contactInfo = document.getElementById('contactInfo').value;
+
+        // 模拟证据文件路径
+        const evidence = ['https://via.placeholder.com/300x200']; // 实际应用中应上传文件并获取URL
+
+        // 创建举报数据
+        const reportData = {
+          reporterId: currentUser.id,
+          reportedUsername,
+          reportedQqNumber,
+          group,
+          violationType,
+          description,
+          evidence,
+          contactInfo
+        };
+
+        // 提交举报
+        const report = DataManager.addReport(reportData);
+        
+        if (report) {
+          Utils.showMessage('举报提交成功', 'success');
+          setTimeout(() => {
+            window.location.href = 'progress.html';
+          }, 1500);
+        } else {
+          Utils.showMessage('举报提交失败，请稍后重试', 'error');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
